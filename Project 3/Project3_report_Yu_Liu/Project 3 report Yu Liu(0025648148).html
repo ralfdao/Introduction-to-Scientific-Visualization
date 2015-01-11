@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Project3 Yu Liu(0025648148)</title>
+    <style type="text/css">
+        .style1
+        {
+            border-width: 0px;
+            width: 491px;
+            height: 226px;
+        }
+        .style2
+        {
+            width: 660px;
+            height: 470px;
+            border-width: 0px;
+        }
+        .style3
+        {
+            width: 660px;
+            height: 470px;
+            border-width: 0px;
+        }
+        .style4
+        {
+            width: 660px;
+            height: 471px;
+            border-width: 0px;
+        }
+    </style>
+</head>
+
+<body>
+<h1>CS530 Introduction to Scientific Visualization Report for Project Three </h1>
+<p>_______________________________________________________________________________________________________________________________________</p>
+<h2>Isosurfaces</h2>
+<h3>Objective:   Use isosurfaces, color maps, transparency and clipping planes to visualize the anatomical structures of human head and feet</h3>
+<h3>Use of datasets: vffeet-hr.vtk, vfhead-hr.vtk, vffeet-small-gm.vtk,vfhead-small-gm.vtk (the best ones that my machine I can support); vffeet-small.vtk, vfhead-small.vtk (these two go with their corresponding gradient datasets in task 4)</h3>
+<h2>Task 1 and 2</h2>
+    <h3>Use  vtkContourFilter  to extract and visualize isosurfaces corresponding to: skin, bones, muscles, and white matter (vfhead-hr.vtk) and bones, muscles, and skin (vffeet-hr.vtk). Use discrete color map to mimic real colors. </h3>
+<h3>I implemented a slider bar GUI whose range is from 0 to 3000. It is approximately the range of values in the two datasets. After experiment I found that the skin and bone have a much larger range of isovalues than that of muscle. So the  visualization of skin and bone is easier than that of muscle. In both the feet visualization and the head visualization I chose an isovalue of 800 for the skin, 1045 for the muscle, and 1180 for the bone. Also these values are the color points in the discrete color map. The visualization results are shown below.</h3>
+<h3>a. Skin of feet</h3>
+<p><a href="pictures/feet_skin_ct.png"><img src="pictures/feet_skin_ct.png" width="640" height="388" /></a></p>
+<h3>b. Muscle of feet</h3>
+<p><a href="pictures/feet_muscle_ct.png"><img src="pictures/feet_muscle_ct.png" width="640" height="338" /></a></p>
+<h3>c. Bone of feet</h3>
+<p><a href="pictures/feet_bone_ct.png"><img src="pictures/feet_bone_ct.png" width="640" height="388" /></a></p>
+<h3>d. Skin of head</h3>
+<p><a href="pictures/head_skin_ct.png"><img src="pictures/head_skin_ct.png" width="640" height="388" /></a></p>
+<h3>e. Muscle of head</h3>
+<p><a href="pictures/head_muscle_ct.png"><img src="pictures/head_muscle_ct.png" width="640" height="388" /></a></p>
+<h3>f. Bone of head</h3>
+<p><a href="pictures/head_bone_ct.png"><img src="pictures/head_bone_ct.png" width="640" height="388" /></a></p>
+<h3>The visualizaion of white matter is a little tricky. The white matter is inside the skull. But removing the skull requires a relatively high isovalue under which the white matter is also removed from visualization.  Below shows fragments of white matter seen from the eye hole of the skull under an isovalue of 1700.</h3>
+<h3>g. White matter</h3>
+<p><a href="pictures/head_white matter_ct.png"><img src="pictures/head_white matter_ct.png" width="640" height="388" /></a></p>
+<h3>I think the muscle isosurface looks the most interesting. One reason is that it is a little bit hard to capture. Increasing or decreasing the isovalue of muscle a little bit will lead to showing bones or skin respectively. Another reason is that the isovalues of muscle seem to change to-and-fro within a range, which makes the visualization of muscle not as continuous as that of skin and bones.   Volume rendering may be a solution to this issue.</h3>
+<h2>Task 3</h2>
+<h3>Task 3 is similar to task 2. The difference is in task 3 the gradient magnitude dataset is used. After experiment I found that the isovalues are much bigger in the gradient magnitude dataset than in the original CT dataset. When designing the slider bar GUI I set the maximum value of the slider bar to 80000. In both the feet visualization and the head visualization I chose an isovalue of 21300 for the skin and 42000 for the muscle. In bone visualization I chose  an isovalue of 51000 for the feet and 61000 for the head. The color points in discrete color map change accordingly. Below are the visualization results.</h3>
+<h3>a. Skin of feet</h3>
+<p><a href="pictures/feet_skin_gm.png"><img src="pictures/feet_skin_gm.png" width="640" height="388" /></a></p>
+<h3>b. Muscle of feet</h3>
+<p><a href="pictures/feet_muscle_gm.png"><img src="pictures/feet_muscle_gm.png" width="640" height="388" /></a></p>
+<h3>c. Bone of feet</h3>
+<p><a href="pictures/feet_bone_gm.png"><img src="pictures/feet_bone_gm.png" width="640" height="388" /></a></p>
+<h3>d. Skin of head</h3>
+<p><a href="pictures/head_skin_gm.png"><img src="pictures/head_skin_gm.png" width="640" height="388" /></a></p>
+<h3>e. Muscle of head</h3>
+<p><a href="pictures/head_muscle_gm.png"><img src="pictures/head_muscle_gm.png" width="640" height="388" /></a></p>
+<h3>f. Bone of head</h3>
+<p><a href="pictures/head_bone_gm.png"><img src="pictures/head_bone_gm.png" width="640" height="388" /></a></p>
+<h3>Again I find  the muscle isosurface  interesting. It looks smoother than the one in task 1 and 2. But it also contains many holes. The   gradient magnitude  kind of smooths the   oscilating values in original CT data for all the isosurfaces. But meanwhile it causes holes at some precise surfaces. The isosurfaces in task 1 and 2 are more continuous than those in task 3.</h3>
+<h2>Task 4</h2>
+<h3>In task 4 I reuse the color map in task 3 to color map the gradient magnitude on the isosurfaces extracted from the original CT scans. Below shows the results.</h3>
+<h3>a. Skin of feet</h3>
+<p><a href="pictures/t4_feet_skin.png"><img src="pictures/t4_feet_skin.png" width="640" height="388" /></a></p>
+<h3>b. Muscle of feet</h3>
+<p><a href="pictures/t4_feet_muscle.png"><img src="pictures/t4_feet_muscle.png" width="640" height="388" /></a></p>
+<h3>c. Bone of feet</h3>
+<p><a href="pictures/t4_feet_bone.png"><img src="pictures/t4_feet_bone.png" width="640" height="388" /></a></p>
+<h3>d. Skin of head</h3>
+<p><a href="pictures/t4_head_skin.png"><img src="pictures/t4_head_skin.png" width="640" height="388" /></a></p>
+<h3>e. Muscle of head</h3>
+<p><a href="pictures/t4_head_muscle.png"><img src="pictures/t4_head_muscle.png" width="640" height="388" /></a></p>
+<h3>f. Bone of head</h3>
+<p><a href="pictures/t4_head_bone.png"><img src="pictures/t4_head_bone.png" width="640" height="388" /></a></p>
+<h3> Now the colors of the isosurfaces are determined by the gradient magnitude. The color for skin (light brown) in task 3 stands for the small gradient magnitudes. The  color for muscle (red) in task 3 stands for the medium gradient magnitudes. The  color for bone (light gray) in task 3 stands for the high gradient magnitudes. From the visualization results shown above it can be seen that  the gradient magnitudes of the bone are the highest, followed by skin, and muscle.   The anatomical structures with higher gradient magnitudes are easier to visualize and more continuous. It seems that the anatomical structures with low gradient magnitudes like muscle contain   oscilating values, which cause holes on the isosurface and make it hard to visualize.</h3>
+<h2>Task 5</h2>
+<h3>Use transparency in the anatomical structures to address occlusion problems. When doing this I had a problem, my graphic card is an ATI Radeon HD 3400 series  which does not support depth peeling. I used depth peeling in my codes and checked the return value of function vtkRenderer::GetLastRenderingUsedDepthPeeling() which is 0. What I get with my own machine is like this.</h3>
+<p><a href="pictures/t5_nodepthpeeling_feet.png"><img src="pictures/t5_nodepthpeeling_feet.png" width="640" height="388" /></a></p>
+<p><a href="pictures/t5_nodepthpeeling_head.png"><img src="pictures/t5_nodepthpeeling_head.png" width="640" height="388" /></a></p>
+<h3>Then I asked one of my friend for help. He does not have a C++ compiler so I just sent him my exe file. My exe works on his machine which has   a NVIDIA GeForce 650M 2GB graphics card. Below shows the results he sent me. Since these results were screenshot by him, the size and style of the pictures are different from the previous ones done by myself. </h3>
+<p><a href="pictures/t5_feet1.JPG"><img src="pictures/t5_feet1.JPG" width="438" height="383" /></a> <a href="pictures/t5_feet2.JPG"><img src="pictures/t5_feet2.JPG" width="365" height="383" /></a><a href="pictures/t5_feet3.JPG"><img src="pictures/t5_feet3.JPG" width="438" height="383" /></a> <a href="pictures/t5_head1.JPG"><img src="pictures/t5_head1.JPG" width="365" height="383" /></a><a href="pictures/t5_head2.JPG"><img src="pictures/t5_head2.JPG" width="438" height="383" /></a> <a href="pictures/t5_head3.JPG"><img src="pictures/t5_head3.JPG" width="365" height="383" /></a></p>
+<h3>The opacity values are  0.25 for skin, 0.55 for muscle and 0.8 for bone. Since I cannot test different opacity values on my own machine I just use the aforesaid values. (My friend said the exe made his machine slow so I just asked him to try once...) From the above results we can see that   transparency is very useful in visualizing the otherwise occluded  anatomical structures and it can give a global view of the whole dataset.</h3>
+<h2>Task 6</h2>
+<h3>The visualization result is shown below. I used vtkImplicitPlaneWidget to realize the interactive GUI for clipping.</h3>
+<p><a href="pictures/t6_1.png"><img src="pictures/t6_1.png" width="640" height="388" /></a> </p>
+<h3>Previously I can not see the white matter inside the skull, now I can use clipping plane to see it. </h3>
+<p><a href="pictures/t6_2.png"><img src="pictures/t6_2.png" width="640" height="388" /></a></p>
+<h3>Also I am interested in looking from the top into the head.</h3>
+<p><a href="pictures/t6_3.png"><img src="pictures/t6_3.png" width="640" height="388" /></a></p>
+<h3>Also an image for the feet. In the below I want to see the vertical intersection of the feet.</h3>
+<p><a href="pictures/t6_4.png"><img src="pictures/t6_4.png" width="640" height="388" /></a></p>
+<h2>Summary Analysis</h2>
+<h3>In this project I used  isosurfaces, color maps, transparency and clipping planes to visualize the anatomical structures in the original CT data and its gradient magnitude data of human head and feet from different perspectives of view. Using isosurfaces I can see each anatomical structures of head and feet. But I can not see the white matter inside the skull until clipping is used. (I think I can also use transparency to see the white matter but unforturnately my graphic card does not support depth peeling so I can not find the best setting to do so). I am using high resolution version for the original CT datasets except that I have to use low resolution CT datasets to match the small gradient magnitude data in task 4. My machine does not support the  high resolution gradient magnitude datasets. In general I think the images shown in each task are the best ones I can get on my machine. Isosurface is very useful in this medical visualization task but it can not handle very well the case where the structure I want to visualize has   oscillating values, like the muscle visualization. And I can not get a global view of the data using isosurface, although transparency and clipping can make up for it somehow.  Transparency and clipping planes help a lot in revealing some otherwise occluded structure like white matter. But they can do nothing to the aforementioned oscillating values problem. Volume rendering can be a solution to this issue.</h3>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Project4 Yu Liu(0025648148)</title>
+    <style type="text/css">
+        .style1
+        {
+            border-width: 0px;
+            width: 491px;
+            height: 226px;
+        }
+        .style2
+        {
+            width: 660px;
+            height: 470px;
+            border-width: 0px;
+        }
+        .style3
+        {
+            width: 660px;
+            height: 470px;
+            border-width: 0px;
+        }
+        .style4
+        {
+            width: 660px;
+            height: 471px;
+            border-width: 0px;
+        }
+    </style>
+</head>
+
+<body>
+<h1>CS530 Introduction to Scientific Visualization Report for Project Four </h1>
+<p>_______________________________________________________________________________________________________________________________________</p>
+<h2>Direct Volume Rendering</h2>
+<h2>Task 1 Salient isovalues</h2>
+<h2>Head CT</h2>
+<h3>First use the code in  project 3 to identify important   isosurfaces in the head CT dataset (vfhead-smooth-large.vtk) and the delta wing CFD dataset (delta-vorticitymag.vtk). </h3>
+    <h3>Using the code of task 1&amp;2 in project 3, I found the isovalues for skin, muscle, skull and teeth to be 800, 1045, 1180 and 2800 respectively. Below shows the results. The range of the slider bar is from 0 to 3000.</h3>
+<h3>Skin</h3>
+<p><a href="pictures/t1skin.jpg"><img src="pictures/t1skin.jpg" width="640" height="388" /></a></p>
+<h3>Muscle</h3>
+<p><a href="pictures/t1muscle.jpg"><img src="pictures/t1muscle.jpg" width="640" height="388" /></a></p>
+<h3>Skull</h3>
+<p><a href="pictures/t1skull.jpg"><img src="pictures/t1skull.jpg" width="640" height="388" /></a></p>
+<h3>Teeth</h3>
+<p><a href="pictures/t1teeth.jpg"><img src="pictures/t1teeth.jpg" width="640" height="388" /></a></p>
+<h3>After finding the feature isovalues, I used color mapping and transparency to show all the isosurfaces in the dataset. The color mapping for the head CT dataset remains the same with that in project 3. Below shows the results for head CT dataset. The opacity values are 0.1, 0.3, 0.8, and 1.0 for skin, muscle, skull and teeth respectively (Unfortunately my graphic card - ATI Radeon HD 3400 does not support depth peeling. The depth peeling results shown below were screenshot by a friend on his machine. In project 3 I did the same thing).</h3>
+<p><a href="pictures/h2.jpg"><img src="pictures/h2.jpg" alt="" width="640" height="388" /></a></p>
+<p><a href="pictures/h1.jpg"><img src="pictures/h1.jpg" alt="" width="640" height="388" /></a></p>
+<h2>CFD</h2>
+<h3>Using the code of task 1&amp;2 in project 3, I found the isovalues for the larger outside vortice tubes, multi-layers vortices, vortice tubes still with recirculation bubbles and inner vortice tubes to be 2500, 11000, 25000 and 50000 respectively. Below shows the results. The range of the slider bar is from 0 to 66000.</h3>
+<h3>Larger outside vortice tube</h3>
+<p><a href="pictures/t2_1.jpg"><img src="pictures/t2_1.jpg" width="640" height="388" /></a></p>
+<h3>Multi-layers vortices (red circles denote recirculation bubbles) </h3>
+<p><a href="pictures/t2_2.jpg"><img src="pictures/t2_2.jpg" width="640" height="388" /></a></p>
+<h3>Vortice tubes still with recirculation bubbles</h3>
+<p><a href="pictures/t2_3.jpg"><img src="pictures/t2_3.jpg" width="640" height="388" /></a></p>
+<h3>Inner vortice tubes</h3>
+<p><a href="pictures/t2_4.jpg"><img src="pictures/t2_4.jpg" width="640" height="388" /></a></p>
+<h3>After finding the feature isovalues, I used color mapping and transparency to show all the isosurfaces in the dataset. I used red and opacity 0.1 for isovalue 2500, green and opacity 0.3 for isovalue 11000, blue and opacity 0.7 for isovalue 25000,  white and opacity 1.0 for isovalue 50000. Below shows the results.</h3>
+<p><a href="pictures/cfd1.jpg"><img src="pictures/cfd1.jpg" width="640" height="388" /></a></p>
+<p><a href="pictures/cfd2.jpg"><img src="pictures/cfd2.jpg" width="640" height="388" /></a></p>
+<h2>&nbsp;</h2>
+<h2>Task 2 Transfer function design</h2>
+<h2>Head CT</h2>
+<h3>In this task I designed three transfer function sets. For the first one, I simply used the values for isosurfaces and color transfer function in  task 1. The detail of the color transfer function and the opacity transfer function is as follows.</h3>
+<h3>colorTransferFunction-&gt;AddRGBPoint(799, 0.0, 0.0, 0.0);<br />
+  colorTransferFunction-&gt;AddRGBPoint(800, 241.0/255, 162.0/255, 123.0/255);<br />
+  colorTransferFunction-&gt;AddRGBPoint(1045, 245.0/255, 90.0/255, 71.0/255);<br />
+  colorTransferFunction-&gt;AddRGBPoint(1180, 255.0/255, 246.0/255, 251.0/255);<br />
+  colorTransferFunction-&gt;AddRGBPoint(2800, 1.0, 1.0, 1.0);</h3>
+<h3>  opacityTransferFunction-&gt;AddPoint(799, 0.0);<br />
+  opacityTransferFunction-&gt;AddPoint(800, 0.1);<br />
+  opacityTransferFunction-&gt;AddPoint(1045, 0.2);<br />
+  opacityTransferFunction-&gt;AddPoint(1180, 0.8);<br />
+  opacityTransferFunction-&gt;AddPoint(2800, 1.0);</h3>
+<h3>Also I  used vtkVolumeRayCastMapper::GetSampleDistance function to query the default sampling distance which is 1. Then I set it to 0.2 through vtkVolumeRayCastMapper::SetSampleDistance function. Below shows the visualization results (vfhead-smooth-large.vtk).</h3>
+<p><a href="pictures/dvr_h.jpg"><img src="pictures/dvr_h.jpg" width="640" height="388" /></a></p>
+<h3>From the above picture we can see that the internal stucture is blocked by the muscle part. The result indicates that the opacity of skin and muscle should be even lower. In the second opacity transfer function design, I changed the control points like this:</h3>
+<h3>opacityTransferFunction-&gt;AddPoint(799, 0.0);<br />
+  opacityTransferFunction-&gt;AddPoint(800, 0.02);<br />
+  opacityTransferFunction-&gt;AddPoint(1045, 0.04);<br />
+  opacityTransferFunction-&gt;AddPoint(1180, 0.8);<br />
+  opacityTransferFunction-&gt;AddPoint(2800, 1.0);</h3>
+<h3>The color transfer function remains the same. Below shows the visualiztion result of the second transfer function sets.</h3>
+<p><a href="pictures/drv_h1.jpg"><img src="pictures/drv_h1.jpg" width="640" height="388" /></a></p>
+<h3>This one is still not good enough. We can see that the teeth is somewhat blocked by the muscle. Then I tried to add a control point of muscle and set its opacity value very low and increase the point value for skull. The third opacity transfer function is as follows.</h3>
+<h3> opacityTransferFunction-&gt;AddPoint(799, 0.0);<br />
+  opacityTransferFunction-&gt;AddPoint(800, 0.02);<br />
+  opacityTransferFunction-&gt;AddPoint(1045, 0.04);<br />
+  opacityTransferFunction-&gt;AddPoint(1180, 0.04);<br />
+  opacityTransferFunction-&gt;AddPoint(1500, 0.8);<br />
+  opacityTransferFunction-&gt;AddPoint(2800, 1.0);</h3>
+<h3>The color transfer function remains the same. Below shows the visualiztion results of the third transfer function sets. I think this one is good enough.</h3>
+<p><a href="pictures/drv_h2.jpg"><img src="pictures/drv_h2.jpg" width="640" height="388" /></a></p>
+<p><a href="pictures/dvr_h3.jpg"><img src="pictures/dvr_h3.jpg" width="640" height="388" /></a></p>
+<h2>CFD</h2>
+<h3>In this task I designed two transfer function sets. For the first one, I simply used the values for isosurfaces and color transfer function in  task 1. The detail of the color transfer function and the opacity transfer function is as follows.</h3>
+<h3>colorTransferFunction-&gt;AddRGBPoint(2400, 0.0, 0.0, 0.0);<br />
+  colorTransferFunction-&gt;AddRGBPoint(2500, 1.0, 0.0, 0.0);<br />
+  colorTransferFunction-&gt;AddRGBPoint(11000, 0.0, 1.0, 0.0);<br />
+  colorTransferFunction-&gt;AddRGBPoint(25000, 0.0, 0.0, 1.0);<br />
+  colorTransferFunction-&gt;AddRGBPoint(50000, 1.0, 1.0, 1.0);</h3>
+<h3> opacityTransferFunction-&gt;AddPoint(2400, 0.0);<br />
+  opacityTransferFunction-&gt;AddPoint(2500, 0.02);<br />
+  opacityTransferFunction-&gt;AddPoint(11000, 0.04);<br />
+  opacityTransferFunction-&gt;AddPoint(25000, 0.8);<br />
+  opacityTransferFunction-&gt;AddPoint(50000, 1.0);</h3>
+<h3>Again sampling distance is set to 0.2. Below shows the visualization results (delta-vorticitymag.vtk).</h3>
+<p><a href="pictures/drv_cfd1.jpg"><img src="pictures/drv_cfd1.jpg" width="640" height="387" /></a></p>
+<p><a href="pictures/drv_cfd2.jpg"><img src="pictures/drv_cfd2.jpg" width="640" height="388" /></a></p>
+<h3> The objective in designing the opacity transfer function is to reveal as much as possible of   the internal structures of the dataset. In the second try I set the opacities of outer layers to a very low value. The new opacity transfer function is like</h3>
+<h3> opacityTransferFunction-&gt;AddPoint(2400, 0.0);<br />
+opacityTransferFunction-&gt;AddPoint(2500, 0.006);<br />
+opacityTransferFunction-&gt;AddPoint(11000, 0.006);<br />
+opacityTransferFunction-&gt;AddPoint(25000, 0.02);<br />
+opacityTransferFunction-&gt;AddPoint(50000, 0.6);</h3>
+<h3>The color transfer function remains the same. Below shows the visualization results. Now we can see the inner tubes.</h3>
+<p><a href="pictures/drv_cfd3.jpg"><img src="pictures/drv_cfd3.jpg" width="640" height="388" /></a></p>
+<p><a href="pictures/drv_cfd4.jpg"><img src="pictures/drv_cfd4.jpg" width="640" height="388" /></a></p>
+<h2>&nbsp;</h2>
+<h2>Task 3 Volume rendering vs. isosurfacing<br />
+</h2>
+<h3>My own graphic card does not support depth peeling. For task 3 I will just use the same pictures (depth peeling isosurfaces visualization) in task 1   to compare with the volumn rending visualization in task 2. I adjust the camera settings in volumn rending visualization so that the camera settings for both cases are almost the same. Below shows the pictures for comparision .</h3>
+<p><a href="pictures/h2.jpg"><img src="pictures/h2.jpg" width="426" height="258" /></a> <a href="pictures/t31.jpg"><img src="pictures/t31.jpg" width="426" height="258" /></a></p>
+<p><a href="pictures/h1.jpg"><img src="pictures/h1.jpg" width="426" height="258" /></a> <a href="pictures/t32.jpg"><img src="pictures/t32.jpg" width="426" height="258" /></a></p>
+<p><a href="pictures/cfd1.jpg"><img src="pictures/cfd1.jpg" width="426" height="258" /></a> <a href="pictures/t33.jpg"><img src="pictures/t33.jpg" width="426" height="258" /></a></p>
+<p><a href="pictures/cfd2.jpg"><img src="pictures/cfd2.jpg" width="426" height="258" /></a> <a href="pictures/t34.jpg"><img src="pictures/t34.jpg" width="426" height="258" /></a></p>
+<h3>When designing the opacity transfer functions in task 2 I first follow the opacity values used in task 1. However the result of doing so is that in the volumn rendering the inner structures are basically blocked by the outer structures. In order to reveal the inner structures I need to assign very low opacity values to the outer structures. This is because the volumn rendering is essentially rendering an infinite set of isosurfaces, which makes the inner structures more obscure due to the accumulated opacities.</h3>
+<h3>Other observations:</h3>
+<h3>Isosurfacing give me an &quot;artificial&quot; feeling. The dataset is continuous but isosurfacing just uses some isosurfaces to represent the dataset, which makes it unnatural comparing to volumn rendering. </h3>
+<h3>Volumn rendering can give the global view of dataset while isosurfacing can not.</h3>
+<h3>When rendering fuzzy structures volumn rendering is  better than isosurfacing. Isosurfacing tends to give holes when capturing fuzzy structures.</h3>
+<h3>Isosurfacing is faster than  volumn rendering. </h3>
+<h3>The boundary in isosurfacing is clear while in   volumn rendering the boundary is fuzzy. If the structure to be captured has an uniform value it is better to use isosurfacing.</h3>
+<h3>Some features are better captured in isosurfacing than in volumn rendering, like the recirculation bubbles in cfd dataset. </h3>
+<h2>&nbsp;</h2>
+<h2>Task 4 Multidimensional transfer functions</h2>
+<h2>Head CT</h2> 
+<h3> The gradient opacity function is used to decrease the opacity in the &quot;flat&quot; regions of the volume while maintaining the opacity at the boundaries between tissue types [1]. Referring to &quot;Medical4.py&quot; example and through experiment, I designed the following gradient transfer function:</h3>
+<h3>gradient-&gt;AddPoint(0,   0.0);<br />
+  gradient-&gt;AddPoint(90,  0.5); <br />
+  gradient-&gt;AddPoint(100, 1.0);</h3>
+<h3>Scalar transfer function: </h3>
+<h3>opacityTransferFunction-&gt;AddPoint(799, 0.0);<br />
+  opacityTransferFunction-&gt;AddPoint(800, 0.02);<br />
+  opacityTransferFunction-&gt;AddPoint(1045, 0.04);<br />
+  opacityTransferFunction-&gt;AddPoint(1180, 0.6);<br />
+  opacityTransferFunction-&gt;AddPoint(1500, 0.8);<br />
+  opacityTransferFunction-&gt;AddPoint(2800, 1.0);</h3>
+<h3>The visualization results are shown below. Since the structures (mostly muscle) with less gradient magnitudes are set to lower opacity, I can see the inner parts more clearly.</h3>
+<p><a href="pictures/t41.jpg"><img src="pictures/t41.jpg" width="640" height="388" /></a></p>
+<p><a href="pictures/t42.jpg"><img src="pictures/t42.jpg" width="640" height="388" /></a></p>
+<p><a href="pictures/t43.jpg"><img src="pictures/t43.jpg" width="640" height="388" /></a></p>
+<h2>CFD</h2>
+<h3> Through experiment  I designed the following gradient transfer function:</h3>
+<h3>opacityTransferFunction-&gt;AddPoint(2400, 0.0);<br />
+  opacityTransferFunction-&gt;AddPoint(2500, 0.02);<br />
+  opacityTransferFunction-&gt;AddPoint(11000, 0.04);<br />
+  opacityTransferFunction-&gt;AddPoint(25000, 0.4);<br />
+  opacityTransferFunction-&gt;AddPoint(50000, 1.0);</h3>
+<h3>gradient-&gt;AddPoint(135,0);<br />
+gradient-&gt;AddPoint(145,1);<br />
+gradient-&gt;AddPoint(250,0);<br />
+gradient-&gt;AddPoint(260,1);<br />
+gradient-&gt;AddPoint(300,0);</h3>
+<h3>In task 2 in order to see the inner tube I set the opacities for the outer structures very low. Here because I am also using gradient transfer function, I can increase the opacities for the outer parts in the scalar transfer function to see more outer parts but at the same time keep the visibility of the inner parts. The results are shown below.</h3>
+<p><a href="pictures/t44.jpg"><img src="pictures/t44.jpg" width="640" height="388" /></a></p>
+<p><a href="pictures/t45.jpg"><img src="pictures/t45.jpg" width="640" height="388" /></a></p>
+<p><a href="pictures/t46.jpg"><img src="pictures/t46.jpg" width="640" height="388" /></a></p>
+<p>&nbsp;</p>
+<h2>Summary Analysis</h2>
+<h3>Some of the pros and cons of volumn rendering are mentioned in the previous discussion. Pros include better capturing fuzzy structures in the dataset, giving a global view of dataset, and also greatly enhancing the quality and flexibility of visualization if multi-dimensional transfer function is used. Cons are transfer function is not easy to design, and also the rendering speed is slower than using isosurfacing.</h3>
+<h3>[1] <a href="http://vtk.org/gitweb?p=VTK.git;a=blob;f=Examples/Medical/Python/Medical4.py">Examples/Medical/Python/Medical4.py </a></h3>
+<p>&nbsp;</p>
+</body>
+</html>

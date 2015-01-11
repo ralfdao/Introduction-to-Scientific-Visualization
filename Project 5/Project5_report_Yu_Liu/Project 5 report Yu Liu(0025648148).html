@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Project5 Yu Liu(0025648148)</title>
+    </head>
+
+<body>
+<h1>CS530 Introduction to Scientific Visualization Report for Project Five </h1>
+<p>_______________________________________________________________________________________________________________________________________</p>
+<h2>Vector Field / Flow Visualization</h2>
+<h2>Part 1 - Visual Exploration of a Delta Wing Dataset </h2>
+<h3>I just did part 1. The datasets I used are tdelta-wing.vtk, tdelta-low.vtk and tdelta-vortmag-low.vtk (My 
+    laptop (Thinkpad R400) is an old one. High resolution datasets make my laptop extremely slow).</h3>
+<h2>Task 1 Glyphs</h2>
+<h3>In this task arrow glyphs are used to visualize the velocity of the flow around the delta wing. I used 3 planes at 3 different locations along the X axis (with normal pointing   along the X direction) to capture the primary, secondary, tertiary vortices on each side of the wing. I used VectorReader-&gt;GetOutput()-&gt;GetPointData()-&gt;GetVectors()-&gt;GetRange(range) to get the vector value range of the dataset. The minimum value is  -0.362368 and the maximum value is 152.99. So I design a color mapping {30 -&gt; blue, 60 -&gt; cyan, 90 -&gt; green, 120 -&gt; yellow, 150 -&gt; red}. The cold colors represents low velocity and the warm colors represent high velocity. Also the size of the arrow glyph is scaled according to the magnitude of the vector.</h3>
+<h3>I used a slider bar to move the position of the plane along X axis. After experiment I chose the first position to be (40,0,0). It shows the initial stage of the vortice cores of the primary vortices.</h3>
+<p><a href="pictures/t11.jpg"><img src="pictures/t11.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t12.jpg"><img src="pictures/t12.jpg" width="640" height="369" /></a></p>
+<h3>The second position I chose is (80,0,0). It shows the primary vortices and the initial stage of the secondary vortices.</h3>
+<p><a href="pictures/t13.jpg"><img src="pictures/t13.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t14.jpg"><img src="pictures/t14.jpg" width="640" height="369" /></a></p>
+<h3>The third position I chose is (140,0,0). It shows the primary vortices and the secondary vortices.</h3>
+<p><a href="pictures/t15.jpg"><img src="pictures/t15.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t16.jpg"><img src="pictures/t16.jpg" width="640" height="369" /></a></p>
+<h3>Below shows the visualization results at some other positions.</h3>
+<p><a href="pictures/t17.jpg"><img src="pictures/t17.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t18.jpg"><img src="pictures/t18.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t19.jpg"><img src="pictures/t19.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t110.jpg"><img src="pictures/t110.jpg" width="640" height="369" /></a></p>
+<h2>Task 2 Streamlines, Stream Tubes and Stream Surfaces</h2>
+<h2>Streamlines</h2>
+<h3>In task 1 the X position 40 shows the initial stage of the formation of the vortices. After experiment I chose a nearby X position 45, and Y positions 25 and -25, and Z position 0 as the coordinates of the left and right seeding points. I set the radius to 10, the number of points to 50 for both seeding points. I used VorticityOn function to enable the computation of vorticity, which replaces the velocity vectors by vorticity vectors. Also I used SpeedScalarsOn function to create scalar data from velocity magnitude for color mapping. The color mapping is the same as in task 1. Below shows the visualization results. The features of vorticity are well captured.</h3>
+<p><a href="pictures/t21.jpg"><img src="pictures/t21.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t22.jpg"><img src="pictures/t22.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t23.jpg"><img src="pictures/t23.jpg" width="640" height="369" /></a></p>
+<h2>Stream Tubes</h2>
+<h3>I used the same coordinates for the seeding points in stream tubes as in the streamline case. The number of the points at each seed is reduced to 20. Also I used SetVaryRadiusToVaryRadiusByScalar function to turn on the variation of tube radius with scalar value. Below shows the visualization results. </h3>
+<p><a href="pictures/t24.jpg"><img src="pictures/t24.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t25.jpg"><img src="pictures/t25.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t26.jpg"><img src="pictures/t26.jpg" width="640" height="369" /></a></p>
+<h2>Stream Surfaces</h2>
+<h3>For stream surfaces first I still used the same two seeding points for the rake. 
+    I used SetIntegrationDirectionToForward and SetIntegrationDirectionToBackward 
+    functions to generate two stream surfaces and spliced them together. Also I 
+    chose an opacity of 0.6 for the stream surfaces to facilitate vorticity 
+    observation. The result is shown below (not good).</h3>
+<p><a href="pictures/t27.jpg"><img src="pictures/t27.jpg" width="640" height="369" /></a></p>
+<h3>Then I tried to increase the displacement of the seeding points on Y axis.  I chose (45,-45,0) and (45,45,0). The result is shown below. It is better but still not good enough.</h3>
+<p><a href="pictures/t28.jpg"><img src="pictures/t28.jpg" width="640" height="369" /></a></p>
+<h3>Then I tried also changing the Z positions of the seeding points. I chose (45,-45,5) and (45,45,5). The results are shown below. They are better than the former ones.</h3>
+<p><a href="pictures/t29.jpg"><img src="pictures/t29.jpg" width="640" height="369" /></a></p>
+<p><a href="pictures/t210.jpg"><img src="pictures/t210.jpg" width="640" height="369" /></a></p>
+<h3><a href="pictures/t211.jpg"><img src="pictures/t211.jpg" width="640" height="369" /></a></h3>
+<p><a href="pictures/t212.jpg"><img src="pictures/t212.jpg" width="640" height="369" /></a></p>
+<h2>Task 3 Combination of Scalar and Vector Visualization</h2>
+<h3>In this task both scalar and vector visualization are used in order to visualize 
+    the relationship between the streamlines geometry and the shape of the 
+    isosurfaces. First I used the code in project 3 to discover the interesting 
+    isosurfaces in &quot;tdelta-vortmag-low&quot; dataset. The results are shown below.</h3>
+    <h3>Isovalue = 500</h3>
+    <p><a href="pictures/t31.jpg"><img src="pictures/t31.jpg" width="640" height="369" /></a></p>
+    <h3>
+Isovalue = 1800</h3>
+    <p><a href="pictures/t32.jpg"><img src="pictures/t32.jpg" width="640" height="369" /></a></p>
+    <h3>
+        Isovalue = 9000</h3>
+    <p><a href="pictures/t33.jpg"><img src="pictures/t33.jpg" width="640" height="369" /></a></p>
+    <h3><span style="height: 79px">I think the above three isosurfaces are the most 
+    representive ones. First I colored the isosurfaces in this manner {500-&gt;blue, 
+    1800-&gt;green, 9000-&gt;red}. Higher magnitudes are represented by warmer color. The 
+    opacities I chose for the isosurfaces are {500-&gt;0.15, 1800-&gt;0.2, 9000-&gt;0.25}. 
+The seeding of the streamlines remains the same as in task 2 streamlines visualization. The results are shown below.</span></h3>
+    <p><a href="pictures/t34.jpg"><img src="pictures/t34.jpg" width="640" height="369" /></a></p>
+    <p><a href="pictures/t35.jpg"><img src="pictures/t35.jpg" width="640" height="369" /></a></p>
+    <h3><span style="height: 79px">However the visualization at the head of the delta wing is 
+        not so good due to the clutter of too many graphical elements. After experiment 
+        I decided to remove the 9000 isosurface, just keep the 500 and 1800 ones, and 
+        change the color mapping to {500-&gt;blue, 1800-&gt;red}. Also I reduced the number of 
+        points in streamline seeding to 40. The result seems to be a good one, in which 
+the streamlines are shown in the context of isosurfaces.</span></h3>
+    <p><a href="pictures/t36.jpg"><img src="pictures/t36.jpg" width="640" height="369" /></a></p>
+    <p><a href="pictures/t37.jpg"><img src="pictures/t37.jpg" width="640" height="369" /></a></p>
+    <p><a href="pictures/t38.jpg"><img src="pictures/t38.jpg" width="640" height="369" /></a></p>
+    <p><a href="pictures/t39.jpg"><img src="pictures/t39.jpg" width="640" height="369" /></a></p>
+    <h2><span style="height: 79px">Task 4 Analysis</span></h2>
+<h3 style="height: 79px">In task 1 the arrow glphys are used to show the flow vectors around the delta wing. Using scaling the magnitudes can also be captured. The plane samples a slice of data from the dataset which can help to find the critical regions and the proper seeding positions for streamlines/streamtubes/streamsurfaces. By moving the plane along X axis we can see the evolution of the vorticity flow. However it only provides local views of the dataset. Streamlines/Streamtubes/Streamsurfaces provide global views of the dataset. The initial positions of the seeding positions play an important role in the final visualization results. Streamlines and streamtubes are similar. However streamtubes can show the magnitude changes by varying the radius of the tubes, which is more intuitive. The visualization of streamsurfaces is a little tricky. We need to do both forward and backward integration and splice the two parts together to form a whole streamsurface. There are more parameters to set in the code. If we do it in the Resample mode, then a resolution needs to be set. If we do it in the PointWalk mode, we need to specify the distance factor. Also we need to assign proper opacity to the streamsurfaces to see the inside features. The combination of isosurfacing and vector visualization is very helpful. The most important thing is that isosurfacing provides a context for the vector visualization. We can see the connection between the velocity information and the scalar feature captured by isosurfacing.</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

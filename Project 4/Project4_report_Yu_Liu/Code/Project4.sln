@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "salient_medical", "salient_medical\salient_medical.vcxproj", "{1DF717B4-7D7B-484F-AA4B-05CD1683B4B2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "salient_cfd", "salient_cfd\salient_cfd.vcxproj", "{34B53352-4395-4F1B-943D-A25EFD948AC7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dvr_medical", "dvr_medical\dvr_medical.vcxproj", "{08656F45-351E-4E69-90F8-1D54F0BC4B9F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dvr_cfd", "dvr_cfd\dvr_cfd.vcxproj", "{902C6397-96BC-44B7-8E80-A113E1625199}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mtf_cfd", "mtf_cfd\mtf_cfd.vcxproj", "{A28C7300-3399-4C7D-8D4A-42378F522952}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mft_medical", "mft_medical\mft_medical.vcxproj", "{C0FAAC9D-3330-4721-9584-381A993C7EDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DF717B4-7D7B-484F-AA4B-05CD1683B4B2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1DF717B4-7D7B-484F-AA4B-05CD1683B4B2}.Debug|Win32.Build.0 = Debug|Win32
+		{1DF717B4-7D7B-484F-AA4B-05CD1683B4B2}.Release|Win32.ActiveCfg = Release|Win32
+		{1DF717B4-7D7B-484F-AA4B-05CD1683B4B2}.Release|Win32.Build.0 = Release|Win32
+		{34B53352-4395-4F1B-943D-A25EFD948AC7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{34B53352-4395-4F1B-943D-A25EFD948AC7}.Debug|Win32.Build.0 = Debug|Win32
+		{34B53352-4395-4F1B-943D-A25EFD948AC7}.Release|Win32.ActiveCfg = Release|Win32
+		{34B53352-4395-4F1B-943D-A25EFD948AC7}.Release|Win32.Build.0 = Release|Win32
+		{08656F45-351E-4E69-90F8-1D54F0BC4B9F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{08656F45-351E-4E69-90F8-1D54F0BC4B9F}.Debug|Win32.Build.0 = Debug|Win32
+		{08656F45-351E-4E69-90F8-1D54F0BC4B9F}.Release|Win32.ActiveCfg = Release|Win32
+		{08656F45-351E-4E69-90F8-1D54F0BC4B9F}.Release|Win32.Build.0 = Release|Win32
+		{902C6397-96BC-44B7-8E80-A113E1625199}.Debug|Win32.ActiveCfg = Debug|Win32
+		{902C6397-96BC-44B7-8E80-A113E1625199}.Debug|Win32.Build.0 = Debug|Win32
+		{902C6397-96BC-44B7-8E80-A113E1625199}.Release|Win32.ActiveCfg = Release|Win32
+		{902C6397-96BC-44B7-8E80-A113E1625199}.Release|Win32.Build.0 = Release|Win32
+		{A28C7300-3399-4C7D-8D4A-42378F522952}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A28C7300-3399-4C7D-8D4A-42378F522952}.Debug|Win32.Build.0 = Debug|Win32
+		{A28C7300-3399-4C7D-8D4A-42378F522952}.Release|Win32.ActiveCfg = Release|Win32
+		{A28C7300-3399-4C7D-8D4A-42378F522952}.Release|Win32.Build.0 = Release|Win32
+		{C0FAAC9D-3330-4721-9584-381A993C7EDE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C0FAAC9D-3330-4721-9584-381A993C7EDE}.Debug|Win32.Build.0 = Debug|Win32
+		{C0FAAC9D-3330-4721-9584-381A993C7EDE}.Release|Win32.ActiveCfg = Release|Win32
+		{C0FAAC9D-3330-4721-9584-381A993C7EDE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

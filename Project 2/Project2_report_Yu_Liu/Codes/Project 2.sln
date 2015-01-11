@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Altitude", "Altitude\Altitude.vcxproj", "{8241EEE2-5D2C-43AC-954F-C58728AC052B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MRI", "MRI\MRI.vcxproj", "{B9B599DE-6E36-4DA0-B98E-E8E37AE03F1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8241EEE2-5D2C-43AC-954F-C58728AC052B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8241EEE2-5D2C-43AC-954F-C58728AC052B}.Debug|Win32.Build.0 = Debug|Win32
+		{8241EEE2-5D2C-43AC-954F-C58728AC052B}.Release|Win32.ActiveCfg = Release|Win32
+		{8241EEE2-5D2C-43AC-954F-C58728AC052B}.Release|Win32.Build.0 = Release|Win32
+		{B9B599DE-6E36-4DA0-B98E-E8E37AE03F1D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B9B599DE-6E36-4DA0-B98E-E8E37AE03F1D}.Debug|Win32.Build.0 = Debug|Win32
+		{B9B599DE-6E36-4DA0-B98E-E8E37AE03F1D}.Release|Win32.ActiveCfg = Release|Win32
+		{B9B599DE-6E36-4DA0-B98E-E8E37AE03F1D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

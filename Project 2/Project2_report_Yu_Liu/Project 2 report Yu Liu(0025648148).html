@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Project2 Yu Liu(0025648148)</title>
+    <style type="text/css">
+        .style1
+        {
+            border-width: 0px;
+            width: 491px;
+            height: 226px;
+        }
+        .style2
+        {
+            width: 660px;
+            height: 470px;
+            border-width: 0px;
+        }
+        .style3
+        {
+            width: 660px;
+            height: 470px;
+            border-width: 0px;
+        }
+        .style4
+        {
+            width: 660px;
+            height: 471px;
+            border-width: 0px;
+        }
+    </style>
+</head>
+
+<body>
+<h1>CS530 Introduction to Scientific Visualization Report for Project Two </h1>
+<p>_______________________________________________________________________________________________________________________________________</p>
+<h2>Color Mapping</h2>
+<h3>Objective: Design color maps to map scalar values to colors to visualize data</h3>
+<h3>Use of datasets: axial1.vtk, axial2.vtk, axial3.vtk, westUS.vtk</h3>
+<h2>MRI
+</h2>
+    <h3>First use the sample program provided on the project page to find control points of the MRI datasets. Take axial1.vtk as example, the largest  value in the data set is 65283 and the smallest  value 0. </h3>
+    <h3>First try highlighting the white matter, see below.</h3>
+    <p><img src="pictures/MRI1.PNG" width="1140" height="680" /></p>
+<h3>The values ranging from 48434 to 65283 cover the white matter part. However there are other parts also being covered in fragment, like skin, bones, eye balls, etc.</h3>
+<h3>Next try highlighting the gray matter, see below.</h3>
+<h3><img src="pictures/MRI2.PNG" width="1140" height="680" /></h3>
+<h3>The values ranging from 7959 to 36385 cover the gray matter part. However there are other parts also being covered in fragment, like skin, bones, eye balls, etc.</h3>
+<h3>The values ranging from 0 to 7958 belong to the outside of the head. The values ranging from 36386 to 48433 cover a variety of parts of brain in fragment, which can be considered as the transition between the above two, see below.</h3>
+<p><img src="pictures/MRI3.PNG" width="1160" height="680" /></p>
+<h3>Design the continuous color map:</h3>
+<h3> Use an isoluminant color map which  fades from a full saturation  to zero saturation   while having its hue fixed to 0.0 (red) and lightness fixed to 1.0. The color with zero saturation represents the threshold value (7959)  below which the values are from outside the head, and the color with full saturation  representing the largest value (65283). The part whose value is below 7959 is mapped to black. The visualization result is shown below. The button on the left side of the bottom is the button to switch between continuous color map and discrete color map. Now it shows a   continuous color progression thumbnail to indicate the continuous color mapping mode.</h3>
+<p><a href="pictures/MRI4.PNG"><img src="pictures/MRI4.PNG" width="750" height="440" /></a></p>
+<h3>It can be seen that the white matter and gray matter are distinguished well while other  anatomical parts are in the transitional value range. Since there is just one scalar value changing continuously in the data set, here I choose an uniform change in saturation to represent the value variation.</h3>
+<h3>Design the discrete color map:</h3>
+<h3>As I mentioned above, the values in the data set are roughly divided into four ranges -- white matter, gray matter, transitional part and the part outside the head. Referring to the brain MRI picture shown below (<a href="http://en.wikipedia.org/wiki/File:Brain_MRI_150443_rgbca_t1_t2_t2STIR_misreg.png">http://en.wikipedia.org/wiki/File:Brain_MRI_150443_rgbca_t1_t2_t2STIR_misreg.png</a>),  I designed the discrete color map in this way --  values in white matter part map to dark red, values in gray matter part map to cyan, values in transitional part map to yellow, and  values in the part outside the head map to black. The HSV values of the colors are obtained from the picture shown below.</h3>
+<p><img src="pictures/MRI5.png" width="259" height="330" /></p>
+<h3>The visualization result is shown below. The switch button shows a   discrete color progression thumbnail to indicate the discrete color mapping mode.</h3>
+<p><a href="pictures/MRI6.PNG"><img src="pictures/MRI6.PNG" width="750" height="440" /></a></p>
+<h3>It can be seen that the white matter is distinguished well while other  anatomical parts are kind of mixed together. Since it is discrete color mapping, there is no interpolation between control points, thus the transition is abrupt when compared with continuous color mapping. The advantage of discrete color mapping is that the distinction between different parts is more obvious.</h3>
+<h3>The following are the visualization results of data sets axial2.vtk and axial3.vtk under the same color map.</h3>
+<p><a href="pictures/MRI7.PNG"><img src="pictures/MRI7.PNG" width="750" height="440" /></a></p>
+<p><a href="pictures/MRI8.PNG"><img src="pictures/MRI8.PNG" width="750" height="440" /></a></p>
+<p><a href="pictures/MRI9.PNG"><img src="pictures/MRI9.PNG" width="750" height="440" /></a></p>
+<p><a href="pictures/MRI10.PNG"><img src="pictures/MRI10.PNG" width="750" height="440" /></a></p>
+<h2>WestUS</h2>
+<h3> The largest  value in the data set is 3924 and the smallest  value -4729. Similar to MRI dataset, I use the isoluminant color map which  fades from a full saturation  to zero saturation  while having its hue fixed to 240°/360° (blue) and lightness fixed to 1.0. The color with zero saturation represents the largest value (3924) and the color with full saturation  representing the smallest value (-4729).  The visualization result is shown below. The button on the left side of the bottom is the button to switch between different color maps. No.1 indicates this single hue  isoluminant color map.</h3>
+<p><a href="pictures/westUS1.png"><img src="pictures/westUS1.png" width="750" height="440" /></a></p>
+<h3>Since the values change from positive to negative in the data set, the   bi-polar  color map which transits from one color  to the other by passing through an unsaturated color (white or yellow) can be a good choice because it  divides the scalar values into three logical regions: low, medium, and high values. These regions provide visual cues that are helpful for understanding data[1]. Here I choose blue (cool color) and red (warm color) as the two pole colors. For the value in the middle I choose light gray as the transition. The visualization result is shown below.</h3>
+<p><a href="pictures/westUS2.png"><img src="pictures/westUS2.png" width="750" height="440" /></a></p>
+<h3>The third color map can be   the blended hue color map[2] which   uses related hues to blend together the two end point hues. This type of color progression is typically used to show elevation changes. For example from yellow through orange to brown. The visualization result is shown below. </h3>
+<p><a href="pictures/westUS3.png"><img src="pictures/westUS3.png" width="750" height="440" /></a></p>
+<h3>All the above three color maps are continuous color maps. For the fouth one I use a discrete color map, which is the discretized version of the third color map. The visualization result is shown below. </h3>
+<p><a href="pictures/westUS4.png"><img src="pictures/westUS4.png" width="750" height="440" /></a></p>
+<h3>Comparing the four color maps, I prefer the second one personally. Because it is aesthetically pleasing and also give a good representation of the data at the same time.</h3>
+<h3>[1]   Kenneth Moreland. 2009. Diverging Color Maps for Scientific Visualization. In <em>Proceedings of the 5th International Symposium on Advances in Visual Computing: Part II</em> (ISVC '09) </h3>
+<h3>[2] http://en.wikipedia.org/wiki/Choropleth_map</h3>
+</body>
+</html>
